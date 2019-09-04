@@ -1,6 +1,6 @@
 {
   "name": "vue-spa-component-mapping",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Gustavo Doriguetto",
   "scripts": {
@@ -11,6 +11,10 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doriguetto/vue-spa-component-mapping.git"
   },
   "devDependencies": {
     "@adobe/cq-spa-page-model-manager": "^1.0.7",
