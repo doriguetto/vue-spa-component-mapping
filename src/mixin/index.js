@@ -7,7 +7,8 @@ export const CONSTANTS = {
   ITEMS: ':items',
   JCR_CONTENT: 'jcr:content',
   SELECTOR: 'model',
-  EXTENSION: '.json'
+  EXTENSION: '.json',
+  ROUTE_EXTENSION: '.html'
 }
 
 export const VueSPAComponentMixin = {
@@ -62,9 +63,13 @@ export const VueSPAComponentMixin = {
     allowedComponents() {
       return this.model.allowedComponents
     },
-    pages() {
+    childrenModel() {
       const data = ModelManager.modelStore.getData()
       return (data? data[CONSTANTS.CHILDREN] : {})
+    },
+    rootPath() {
+      const data = ModelManager.modelStore.getData()
+      return (data? data[CONSTANTS.PATH] + CONSTANTS.ROUTE_EXTENSION : '')
     },
     CONSTANTS() {
       return CONSTANTS

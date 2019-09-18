@@ -22,6 +22,7 @@ yarn-error.log*
 *.sw?
 
 # Project files
+.browserslistrc
 .editorconfig
 .eslintrc.js
 .gitignore
