@@ -1,4 +1,4 @@
-import { ModelManager } from '@adobe/cq-spa-page-model-manager';
+import { ModelManager } from '@adobe/aem-spa-page-model-manager';
 
 export const CONSTANTS = {
   CHILDREN : ':children',

@@ -1,34 +1,39 @@
 {
   "name": "vue-spa-component-mapping",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "author": "Gustavo Doriguetto",
   "scripts": {
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
+  "keywords": [
+    "vue",
+    "spa",
+    "aem"
+  ],
   "main": "src/mixin/index.js",
   "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "core-js": "^2.6.11",
+    "vue": "^2.6.12"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/doriguetto/vue-spa-component-mapping.git"
   },
   "devDependencies": {
-    "@adobe/cq-spa-page-model-manager": "^1.0.7",
-    "@babel/preset-env": "^7.5.5",
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-plugin-unit-jest": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
+    "@adobe/aem-spa-page-model-manager": "^1.2.3",
+    "@babel/preset-env": "^7.12.1",
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-plugin-eslint": "^3.12.1",
+    "@vue/cli-plugin-unit-jest": "^4.5.8",
+    "@vue/cli-service": "^4.5.8",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.12"
   }
 }

@@ -1,11 +1,11 @@
 import { mount, shallowMount } from '@vue/test-utils'
 import { VueSPAAppMixin, VueSPAComponentManager, VueSPAComponentMixin } from '@/mixin'
-import { ModelManager as ModelManagerMock } from '@adobe/cq-spa-page-model-manager'
+import { ModelManager as ModelManagerMock } from '@adobe/aem-spa-page-model-manager'
 
 const { mapTo, getByName, getByResourceType, set} = VueSPAComponentManager
 
 var resolver;
-jest.mock('@adobe/cq-spa-page-model-manager', () => ({
+jest.mock('@adobe/aem-spa-page-model-manager', () => ({
   ModelManager: {
     promise: new Promise(function (resolve) {
       resolver = resolve
