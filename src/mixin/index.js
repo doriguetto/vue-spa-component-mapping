@@ -1,3 +1,11 @@
+/*!
+* vue-spa-component-mapping
+* Provide integration layer between vue and AEM SPA.
+*
+* @author   Gustavo Doriguetto
+* @license  MIT
+*/
+
 import { ModelManager } from '@adobe/aem-spa-page-model-manager';
 
 export const CONSTANTS = {
@@ -37,10 +45,12 @@ export const VueSPAComponentMixin = {
     childModel: {
       immediate: true,
       handler(model) {
-        this.model = Object.assign({}, this.model, model);
+        this.model = Object.assign({}, this.model, model)
 
         //update child models after authoring
         for(let item in this.model[CONSTANTS.ITEMS]) {
+          VueSPAComponentManager.registerInstance(this.childPath + item)
+
           ModelManager.removeListener(this.childPath + item)
           ModelManager.addListener(this.childPath + item, () => {
             let vm = this
@@ -53,6 +63,11 @@ export const VueSPAComponentMixin = {
         if (this.onModelChange) {
           this.onModelChange(model)
         }
+        if (this.onModelLoaded) {
+          VueSPAComponentManager.registerCallback(this.onModelLoaded)
+        }
+        VueSPAComponentManager.removeInstance(this.cqPath)
+        VueSPAComponentManager.flushCallbacks()
       }
     },
   },
@@ -102,8 +117,29 @@ export const VueSPAAppMixin = {
   },
 }
 
+let callbacks = []
 let componentStore = []
+let componentLibrary = []
 export const VueSPAComponentManager = {
+
+  registerInstance: (path) => {
+    componentStore.push(path)
+  },
+
+  removeInstance: (path) => {
+    componentStore = componentStore.filter((item) => item !== path)
+  },
+
+  registerCallback: (cb) => {
+    callbacks.push(cb)
+  },
+
+  flushCallbacks: () => {
+    if (componentStore.length === 0 && callbacks.length > 0) {
+      callbacks.forEach(cb => cb())
+      callbacks = []
+    }
+  },
 
   /**
    * Update component store with given component data
@@ -117,12 +153,12 @@ export const VueSPAComponentManager = {
   set: ({name, resourceType}) => {
     if (typeof name !== 'undefined' &&
       typeof resourceType !== 'undefined') {
-      componentStore = [
+      componentLibrary = [
         {
           name,
           resourceType
         },
-        ...componentStore.filter((item) => resourceType !== item.resourceType)
+        ...componentLibrary.filter((item) => resourceType !== item.resourceType)
       ]
     }
   },
@@ -134,7 +170,7 @@ export const VueSPAComponentManager = {
 
   getByName : (name) => {
     let component = '';
-    componentStore.forEach((item) => {
+    componentLibrary.forEach((item) => {
       if (item.name === name) {
         component = item
       }
@@ -149,7 +185,7 @@ export const VueSPAComponentManager = {
 
   getByResourceType : (resourceType) => {
     let component = '';
-    componentStore.forEach((item) => {
+    componentLibrary.forEach((item) => {
       if (item.resourceType === resourceType) {
         component = item
       }

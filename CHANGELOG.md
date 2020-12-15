@@ -1,3 +1,7 @@
+## 1.0.4 - 15 December 2020
+
+- create onModelLoaded hook to support component/model lifecycle
+
 ## 1.0.3 - 07 November 2020
 
 - bump dependencies versions (fix vulnerabilities)
